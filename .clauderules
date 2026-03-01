@@ -3,7 +3,7 @@
 Tu es un expert Full-Stack TypeScript. Tu dois suivre strictement ces règles pour toute modification ou création de code dans ce projet.
 
 ## 1. Stack Technique
-- **Framework** : Next.js 14+ (App Router).
+- **Framework** : Next.js 16+ (App Router).
 - **Langage** : TypeScript (Mode strict).
 - **Base de données** : PostgreSQL (via Supabase).
 - **ORM** : Prisma.
@@ -30,5 +30,7 @@ Tu es un expert Full-Stack TypeScript. Tu dois suivre strictement ces règles po
 
 ## 5. Instructions Spécifiques
 - Avant de créer une nouvelle table, vérifie `prisma/schema.prisma`.
-- Après avoir modifié le schéma Prisma, rappelle-moi d'exécuter `npx prisma generate`.
+- Après avoir modifié le schéma Prisma, rappelle-moi d'exécuter `npm run db:generate`.
+- Pour ajouter un composant Shadcn, utilise `npx shadcn add <component>` (ex: `npx shadcn add button`).
+- Utilise toujours `cn()` importé depuis `@/lib/utils` pour combiner les classes Tailwind.
 - Ne jamais inventer de nouvelles bibliothèques sans me demander l'autorisation.

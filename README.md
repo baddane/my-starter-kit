@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Starter Kit
+
+A production-ready Next.js starter template with a full-stack setup.
+
+## Stack
+
+- **Framework**: Next.js 16 (App Router) + React 19
+- **Language**: TypeScript (strict mode)
+- **Database**: PostgreSQL via Supabase
+- **ORM**: Prisma
+- **UI**: Tailwind CSS v4 + Shadcn/ui (via `npx shadcn add <component>`)
+- **Validation**: Zod
+- **Icons**: lucide-react
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone & install
+
+```bash
+git clone <your-repo-url>
+cd <your-project>
+npm install
+```
+
+### 2. Configure environment
+
+```bash
+cp .env.example .env.local
+```
+
+Fill in your values in `.env.local`:
+
+```env
+DATABASE_URL="postgres://postgres:[PASSWORD]@db.[REF].supabase.co:6543/postgres?pgbouncer=true"
+NEXT_PUBLIC_SUPABASE_URL="https://[REF].supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-key"
+```
+
+### 3. Set up the database
+
+```bash
+npm run db:migrate   # run migrations
+npm run db:generate  # generate Prisma client
+```
+
+### 4. Start the dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+src/
+├── app/              # Routes and pages (Next.js App Router)
+├── components/
+│   └── ui/           # Shadcn/ui components (add via CLI)
+└── lib/
+    ├── db.ts         # Prisma client singleton
+    ├── supabase.ts   # Supabase client
+    └── utils.ts      # cn() utility (clsx + tailwind-merge)
+prisma/
+└── schema.prisma     # Database schema
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Database Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Command | Description |
+|---------|-------------|
+| `npm run db:migrate` | Run pending migrations |
+| `npm run db:generate` | Regenerate Prisma client |
+| `npm run db:push` | Push schema without migration (prototyping) |
+| `npm run db:studio` | Open Prisma Studio |
+| `npm run db:reset` | Reset the database |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Adding Shadcn/ui Components
 
-## Deploy on Vercel
+```bash
+npx shadcn add button
+npx shadcn add input
+npx shadcn add card
+# etc.
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Components are generated into `src/components/ui/`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Code Style
+
+```bash
+npm run lint     # ESLint
+npm run format   # Prettier
+```
