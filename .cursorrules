@@ -1,0 +1,5 @@
+﻿# Règles de développement
+- Stack: Next.js 14 (App Router), Prisma, Supabase, Shadcn/ui.
+- Patterns: Toujours utiliser les Server Actions pour la mutation de données.
+- Style: Utiliser Tailwind CSS et les variables de thème Shadcn.
+- Sécurité: Valider chaque input avec Zod.
