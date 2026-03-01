@@ -1,0 +1,34 @@
+# Règles de Développement pour Claude Code
+
+Tu es un expert Full-Stack TypeScript. Tu dois suivre strictement ces règles pour toute modification ou création de code dans ce projet.
+
+## 1. Stack Technique
+- **Framework** : Next.js 14+ (App Router).
+- **Langage** : TypeScript (Mode strict).
+- **Base de données** : PostgreSQL (via Supabase).
+- **ORM** : Prisma.
+- **UI** : Tailwind CSS + Shadcn/ui.
+- **Validation** : Zod (pour tous les schémas de données).
+
+## 2. Architecture des Dossiers
+- `src/app/` : Routes et pages.
+- `src/components/` : Composants React.
+- `src/components/ui/` : Composants Shadcn (ne pas modifier manuellement).
+- `src/lib/` : Utilitaires et configuration (ex: `db.ts` pour Prisma).
+- `prisma/` : Schéma de base de données.
+
+## 3. Patterns de Code (Priorités)
+- **Server Actions** : Utilise TOUJOURS les Server Actions pour les mutations de données (POST, PUT, DELETE). Ne crée pas de routes `/api/` sauf si c'est pour un webhook externe.
+- **Client vs Server** : Garde les composants côté serveur par défaut. Utilise `"use client"` uniquement si nécessaire (interactivité, hooks React).
+- **Accès DB** : Utilise toujours l'instance `db` importée depuis `@/lib/db`.
+- **Validation** : Valide systématiquement les entrées utilisateur avec Zod avant de toucher à la base de données.
+
+## 4. Style et UI
+- Utilise les variables de thème Shadcn (ex: `bg-background`, `text-primary`).
+- Respecte le design responsive mobile-first.
+- Pour les icônes, utilise exclusivement `lucide-react`.
+
+## 5. Instructions Spécifiques
+- Avant de créer une nouvelle table, vérifie `prisma/schema.prisma`.
+- Après avoir modifié le schéma Prisma, rappelle-moi d'exécuter `npx prisma generate`.
+- Ne jamais inventer de nouvelles bibliothèques sans me demander l'autorisation.
